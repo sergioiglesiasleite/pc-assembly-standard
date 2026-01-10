@@ -1,0 +1,191 @@
+09:32:43 [types] Generated 48ms
+09:32:43 [check] Getting diagnostics for Astro files in C:\Users\sergi\Documents\myfirstpc...
+[96msrc/components/LanguageSelector.tsx[0m:[93m48[0m:[93m88[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ en: string; es: string; de: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ en: string; es: string; de: string; }'.
+
+[7m48[0m                             <span className="uppercase font-semibold">{lang}</span> - {languageNames[lang]}
+[7m  [0m [91m                                                                                       ~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/data/translations-expanded.js[0m:[93m368[0m:[93m1[0m - [91merror[0m[90m ts(1005): [0m'}' expected.
+
+[7m368[0m 
+[7m   [0m [91m[0m
+[96msrc/data/translations-expanded.js[0m:[93m367[0m:[93m10[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m367[0m         };
+[7m   [0m [91m         ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m363[0m:[93m22[0m - [91merror[0m[90m ts(1005): [0m':' expected.
+
+[7m363[0m         export const languageNames = {
+[7m   [0m [91m                     ~~~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m361[0m:[93m61[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m361[0m         export const supportedLanguages = ['en', 'es', 'de'];
+[7m   [0m [91m                                                            ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m361[0m:[93m22[0m - [91merror[0m[90m ts(1005): [0m':' expected.
+
+[7m361[0m         export const supportedLanguages = ['en', 'es', 'de'];
+[7m   [0m [91m                     ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m359[0m:[93m10[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m359[0m         };
+[7m   [0m [91m         ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m338[0m:[93m9[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m338[0m         }
+[7m   [0m [91m        ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m337[0m:[93m27[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m337[0m                         os: { title: "Instalación SO", usbCreation: { title: "Crear USB Windows 11", methods: [{ title: "Método 1: Media Creation Tool (Principiantes)", steps: ["Descarga de Microsoft", "Ejecuta herramienta", "Elige idioma y edición", "Selecciona USB 8GB+", "Espera 15-30 min"] }, { title: "Método 2: Rufus (Más Rápido, Bypass TPM)", explanation: "💡 Rufus es más rápido y puede saltar requisitos TPM", steps: ["Descarga Rufus de rufus.ie", "Descarga ISO Windows 11", "Ejecuta Rufus, selecciona USB", "Click SELECT, elige ISO", "GPT, UEFI", "START - opción quitar TPM", "Espera 5-10 min"] }] }, installation: { title: "Instalación Windows 11", steps: ["Inserta USB y reinicia", "Presiona F12/F11/ESC", "Selecciona USB", "Sigue wizard", "Custom install", "Particiona drives", "Espera 20-40 min", "Configura cuenta"] }, drivers: { title: "Instalación Drivers (CRÍTICO)", explanation: "💡 Windows Update instala drivers básicos y viejos. Drivers oficiales dan mejor rendimiento.", order: ["**1. Chipset** (PRIMERO): De fabricante placa base", "**2. GPU**: nvidia.com o amd.com - NO Windows Update", "**3. Audio**: Realtek de página placa", "**4. Red**: LAN/WiFi de página placa", "**5. Periféricos**: iCUE (Corsair), NZXT CAM, Logitech G HUB, Razer Synapse, Armoury Crate/Dragon Center"] }, postInstall: { title: "Post-Instalación", critical: ["Windows Update completo", "Chipset instalado", "GPU drivers oficiales", "Device Manager limpio", "Audio probado", "Red verificada", "Software periféricos", "Stress test"] }, optimization: { title: "Optimización Opcional", steps: ["Plan energía Alto Rendimiento", "Desactivar programas inicio", "Privacidad Windows", "Software esencial", "Game Mode para gaming"] }, checklist: ["Windows 11 instalado", "Updates completados", "Chipset instalado", "GPU oficial instalado", "Audio funciona", "Red verificada", "Periféricos configurados", "Device Manager limpio", "Stress test pasado", "Listo para deploy"] }
+[7m   [0m [91m                          ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m336[0m:[93m29[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m336[0m                         boot: { title: "Primer Arranque", firstBoot: { title: "Encendido Inicial", steps: ["Verifica conexiones", "Monitor a GPU no placa", "Enciende PSU", "Presiona power", "Observa POST"] }, troubleshooting: { title: "Problemas Comunes", noVideo: { title: "Sin Video", solutions: ["Cable en GPU no placa", "Monitor encendido", "Re-asienta GPU", "Re-asienta RAM", "Verifica LEDs debug"] }, noPost: { title: "No Enciende", solutions: ["PSU encendida", "24-pin y 8-pin bien conectados", "Power SW correcto", "Re-asienta RAM", "Verifica cortocircuitos"] } }, bios: { title: "Configuración BIOS", explanation: "💡 BIOS inicializa hardware antes de Windows", steps: ["Presiona DEL/F2", "Busca sección Memory", "Activa XMP/EXPO", "Modo UEFI para Win11", "Orden arranque USB primero", "Opcional: virtualización", "Guarda F10"], xmpExpo: { title: "🔰 ¿Qué es XMP/EXPO?", description: "Perfil que activa velocidad real de RAM. Por defecto RAM corre a 2133MHz sin importar lo que compraste. XMP desbloquea velocidad completa. NO es overclock.", imageRef: "/images/bios/xmp-setting.png" }, uefiLegacy: { title: "🔰 UEFI vs Legacy", description: "**UEFI**: Moderno, requerido Win11, usa GPT, Secure Boot. **Legacy**: Antiguo, MBR, solo para OS viejos.", imageRef: "/images/bios/boot-mode.png" }, erp: { title: "🔰 ¿Qué es ERP?", description: "Modo bajo consumo <1W apagado. Desventaja: desactiva Wake-on-LAN y carga USB apagado." } }, checklist: ["Sistema enciende", "POST exitoso", "Sin errores", "BIOS accesible", "XMP activado", "Modo UEFI", "Orden arranque configurado"] },
+[7m   [0m [91m                            ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m335[0m:[93m32[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m335[0m                         cabling: { title: "Cableado", frontPanel: { title: "Conectores Panel Frontal", warning: "⚠️ ¡Verifica manual de placa!", explanation: "💡 Interruptores no tienen polaridad. LEDs sí (+/-).", connectors: ["Power SW - 2 pines", "Reset SW - 2 pines", "HDD LED - polaridad importa", "Power LED +/-", "USB 3.0 header", "USB 2.0", "HD Audio"], imageRef: "/images/cables/front-panel.png" }, power: { title: "Cables Alimentación", cables: ["ATX 24 pines", "8 pines CPU", "PCIe 6+2 GPU", "SATA drives", "Ventiladores"] }, management: { title: "Gestión de Cables", explanation: "💡 Mejora flujo de aire y facilita upgrades", tips: ["Pasa cables detrás de bandeja", "Usa bridas", "Aleja de ventiladores", "Planifica antes de instalar"], imageRef: "/images/cables/cable-management.png" }, checklist: ["24-pin conectado", "8-pin CPU conectado", "GPU alimentada", "Panel frontal instalado", "USB conectados", "Audio conectado", "Drives conectados", "Cables organizados"] },
+[7m   [0m [91m                               ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m334[0m:[93m21[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m334[0m             hardware: { title: "Ensamblaje de Hardware", beginner: { title: "🔰 Para Principiantes", items: ["**CPU**: El 'cerebro' del ordenador", "**RAM**: Espacio de trabajo temporal para programas", "**Placa Base**: Sistema nervioso que conecta todo", "**GPU**: Procesador gráfico para juegos y vídeo"] }, cpu: { title: "Instalación de CPU", warning: "⚠️ CRÍTICO: ¡Retira la cubierta de plástico del refrigerador!", steps: ["Abre socket CPU", "Alinea triángulo dorado", "Coloca CPU suavemente", "Baja brazo de retención", "Aplica pasta térmica", "Instala refrigerador", "Conecta ventilador"], imageRef: "/images/cpu/cpu-installation.png" }, ram: { title: "Instalación RAM", explanation: "💡 **¿Por qué A2/B2?** Dual-channel duplica el ancho de banda de memoria.", steps: ["Verifica manual para slots A2/B2", "Abre clips de retención", "Alinea muesca RAM", "Presiona hasta que clips encajen", "Verifica bloqueo"], imageRef: "/images/ram/ram-installation.png" }, case: { title: "Instalar Placa en Gabinete", steps: ["Instala panel I/O", "Instala separadores", "Coloca placa base", "Asegura con tornillos", "Instala GPU si aplica"], imageRef: "/images/motherboard/overview.png" }, checklist: ["CPU instalada", "Pasta térmica aplicada", "Cubierta removida", "Ventilador conectado", "RAM en A2/B2", "Placa asegurada", "GPU instalada"] },
+[7m   [0m [91m                    ~[0m
+[96msrc/data/translations-expanded.js[0m:[93m334[0m:[93m13[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m334[0m             hardware: { title: "Ensamblaje de Hardware", beginner: { title: "🔰 Para Principiantes", items: ["**CPU**: El 'cerebro' del ordenador", "**RAM**: Espacio de trabajo temporal para programas", "**Placa Base**: Sistema nervioso que conecta todo", "**GPU**: Procesador gráfico para juegos y vídeo"] }, cpu: { title: "Instalación de CPU", warning: "⚠️ CRÍTICO: ¡Retira la cubierta de plástico del refrigerador!", steps: ["Abre socket CPU", "Alinea triángulo dorado", "Coloca CPU suavemente", "Baja brazo de retención", "Aplica pasta térmica", "Instala refrigerador", "Conecta ventilador"], imageRef: "/images/cpu/cpu-installation.png" }, ram: { title: "Instalación RAM", explanation: "💡 **¿Por qué A2/B2?** Dual-channel duplica el ancho de banda de memoria.", steps: ["Verifica manual para slots A2/B2", "Abre clips de retención", "Alinea muesca RAM", "Presiona hasta que clips encajen", "Verifica bloqueo"], imageRef: "/images/ram/ram-installation.png" }, case: { title: "Instalar Placa en Gabinete", steps: ["Instala panel I/O", "Instala separadores", "Coloca placa base", "Asegura con tornillos", "Instala GPU si aplica"], imageRef: "/images/motherboard/overview.png" }, checklist: ["CPU instalada", "Pasta térmica aplicada", "Cubierta removida", "Ventilador conectado", "RAM en A2/B2", "Placa asegurada", "GPU instalada"] },
+[7m   [0m [91m            ~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m197[0m - [91merror[0m[90m ts(1002): [0mUnterminated string literal.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                                                                    [0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m192[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                                                               ~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m179[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                                                  ~~~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m167[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                                      ~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m163[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                                  ~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m158[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                             ~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m155[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                          ~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m152[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                       ~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m148[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                                   ~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m137[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                        ~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m133[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                                    ~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m124[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                           ~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m116[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                   ~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m113[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                                ~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m105[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                        ~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m101[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                                    ~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m93[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                                            ~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m80[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                               ~~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m76[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                           ~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m70[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                                     ~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m51[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m45[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                            ~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m41[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                        ~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m37[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                                    ~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m25[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                        ~~~~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m18[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m                 ~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m14[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m             ~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m6[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m     ~~~~~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m333[0m:[93m1[0m - [91merror[0m[90m ts(1005): [0m',' expected.
+
+[7m333[0m idos alejados", "Maneja componentes por los bordes"] }, checklist: ["Todas las herramientas reunidas", "Espacio de trabajo preparado", "Protección ESD en su lugar", "Componentes inventariados"] },
+[7m   [0m [91m~~~~[0m
+[96msrc/data/translations-expanded.js[0m:[93m331[0m:[93m205[0m - [91merror[0m[90m ts(1002): [0mUnterminated string literal.
+
+[7m331[0m                     title: "Precauciones de Seguridad", items: ["Trabaja en superficie no conductora", "Usa pulsera ESD conectada a metal con toma de tierra", "Evita trabajar sobre alfombra", "Mantén líqu
+[7m   [0m [91m                                                                                                                                                                                                            [0m
+
+[96msrc/pages/[lang].astro[0m:[93m6[0m:[93m16[0m - [93mwarning[0m[90m ts(6133): [0m'X' is declared but its value is never read.
+
+[7m6[0m import { Menu, X, AlertTriangle, Lightbulb } from 'lucide-react';
+[7m [0m [93m               ~[0m
+[96msrc/pages/[lang].astro[0m:[93m6[0m:[93m10[0m - [93mwarning[0m[90m ts(6133): [0m'Menu' is declared but its value is never read.
+
+[7m6[0m import { Menu, X, AlertTriangle, Lightbulb } from 'lucide-react';
+[7m [0m [93m         ~~~~[0m
+
+Result (11 files): 
+- 43 errors
+- 0 warnings
+- 2 hints
+

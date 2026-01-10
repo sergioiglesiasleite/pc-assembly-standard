@@ -1,0 +1,712 @@
+export const translations = {
+    en: {
+        siteName: "Field Ops Guide: PC Assembly Standard",
+        tagline: "Professional PC Building Documentation",
+        navigation: {
+            prep: "Prep & Safety",
+            hardware: "Hardware Assembly",
+            cabling: "Cabling",
+            boot: "First Boot & Troubleshooting",
+            os: "OS & Deployment"
+        },
+        sections: {
+            prep: {
+                title: "Preparation & Safety",
+                tools: {
+                    title: "Required Tools",
+                    items: [
+                        "Phillips head screwdriver (magnetic tip recommended)",
+                        "Cable ties / Velcro straps",
+                        "Thermal paste (if not pre-applied)",
+                        "Anti-static wrist strap (ESD protection)"
+                    ]
+                },
+                safety: {
+                    title: "Safety Precautions",
+                    items: [
+                        "Work on a non-conductive surface (wood table, anti-static mat)",
+                        "Wear ESD wrist strap connected to grounded metal",
+                        "Avoid working on carpet",
+                        "Keep liquids away from workspace",
+                        "Handle components by edges, avoid touching pins or contacts"
+                    ]
+                },
+                checklist: [
+                    "All tools gathered",
+                    "Workspace prepared (clean, non-conductive)",
+                    "ESD protection in place",
+                    "Component boxes opened and inventoried"
+                ]
+            },
+            hardware: {
+                title: "Hardware Assembly",
+                cpu: {
+                    title: "CPU & Cooler Installation",
+                    warning: "⚠️ CRITICAL: Remove plastic protective cover from CPU cooler base before installation!",
+                    steps: [
+                        "Open motherboard CPU socket (lift retention arm)",
+                        "Align CPU with socket notches (golden triangle indicator)",
+                        "Gently place CPU - do NOT force",
+                        "Lower retention arm to secure",
+                        "Apply thermal paste (pea-size dot in center) if not pre-applied",
+                        "Install CPU cooler according to manufacturer instructions",
+                        "Connect CPU fan cable to motherboard CPU_FAN header"
+                    ]
+                },
+                ram: {
+                    title: "RAM Installation",
+                    steps: [
+                        "Check motherboard manual for correct DIMM slots (usually A2/B2 for dual-channel)",
+                        "Open retention clips on both sides of slot",
+                        "Align RAM notch with slot key",
+                        "Press firmly until clips snap into place",
+                        "Verify both clips are locked"
+                    ]
+                },
+                case: {
+                    title: "Installing Motherboard into Case",
+                    steps: [
+                        "Install I/O shield into case rear panel",
+                        "Install motherboard standoffs matching your board size (ATX/mATX/ITX)",
+                        "Carefully place motherboard, aligning with I/O shield and standoffs",
+                        "Secure with screws - do not overtighten",
+                        "Install GPU if applicable (remove PCIe slot covers first)"
+                    ]
+                },
+                checklist: [
+                    "CPU installed correctly",
+                    "Thermal paste applied (pea size)",
+                    "Cooler plastic cover REMOVED",
+                    "CPU fan connected",
+                    "RAM seated in correct slots (A2/B2)",
+                    "Motherboard secured with all standoffs",
+                    "GPU installed (if applicable)"
+                ]
+            },
+            cabling: {
+                title: "Cabling (The Hard Part)",
+                frontPanel: {
+                    title: "Front Panel Connectors",
+                    warning: "⚠️ Check your motherboard manual for exact pin layout!",
+                    connectors: [
+                        "Power SW (Power button) - Usually 2-pin",
+                        "Reset SW (Reset button) - Usually 2-pin",
+                        "HDD LED (Hard drive activity light) - Usually 2-pin, polarity matters (+/-)",
+                        "Power LED (+/-) - Usually 2-pin, polarity matters",
+                        "USB 3.0 header (19-pin keyed connector)",
+                        "USB 2.0 headers (9-pin)",
+                        "HD Audio (AC'97 or HDA connector)"
+                    ]
+                },
+                power: {
+                    title: "Power Supply Cables",
+                    cables: [
+                        "24-pin ATX Main Power (largest connector, goes to motherboard)",
+                        "8-pin (4+4) CPU Power (top-left of motherboard near CPU)",
+                        "PCIe 6+2 pin for GPU (if dedicated graphics card installed)",
+                        "SATA power for storage drives",
+                        "Fan connectors to motherboard headers"
+                    ]
+                },
+                management: {
+                    title: "Pro Tip: Cable Management",
+                    tips: [
+                        "Route cables behind motherboard tray when possible",
+                        "Use cable ties to bundle and secure cables",
+                        "Keep cables away from fan blades",
+                        "Good cable management improves airflow and aesthetics"
+                    ]
+                },
+                checklist: [
+                    "24-pin ATX power connected",
+                    "8-pin CPU power connected",
+                    "GPU power connected (if applicable)",
+                    "Front panel connectors installed (Power, Reset, LED)",
+                    "USB headers connected",
+                    "Audio header connected",
+                    "SATA/NVMe drives connected",
+                    "Cables managed and secured"
+                ]
+            },
+            boot: {
+                title: "First Boot & Troubleshooting",
+                firstBoot: {
+                    title: "Initial Power-On",
+                    steps: [
+                        "Double-check all power connections",
+                        "Ensure monitor is connected to GPU (NOT motherboard) if GPU is installed",
+                        "Turn on PSU switch",
+                        "Press power button",
+                        "Watch for POST (Power-On Self Test) - LEDs, fans spinning"
+                    ]
+                },
+                troubleshooting: {
+                    title: "Common Issues",
+                    noVideo: {
+                        title: "No Video Output",
+                        solutions: [
+                            "Check monitor cable is in GPU port, not motherboard (if GPU installed)",
+                            "Verify monitor is powered on and set to correct input",
+                            "Reseat GPU and power cables",
+                            "Try removing and reinstalling RAM",
+                            "Check motherboard debug LEDs (CPU, RAM, VGA, BOOT)"
+                        ]
+                    },
+                    noPost: {
+                        title: "No POST / Won't Turn On",
+                        solutions: [
+                            "Verify PSU is switched ON",
+                            "Check 24-pin and 8-pin CPU power fully seated",
+                            "Verify front panel Power SW connector is correct",
+                            "Reseat RAM (try one stick at a time)",
+                            "Check for motherboard standoff shorts"
+                        ]
+                    }
+                },
+                bios: {
+                    title: "BIOS Setup",
+                    steps: [
+                        "Press DEL or F2 during boot to enter BIOS",
+                        "Enable XMP/EXPO for RAM (for rated speeds)",
+                        "Set boot order (USB first for Windows installation)",
+                        "Enable virtualization (VT-x/AMD-V) if needed",
+                        "Save and exit"
+                    ]
+                },
+                checklist: [
+                    "System powers on (fans spin, LEDs light)",
+                    "POST successful (video output achieved)",
+                    "No beep codes or debug LED errors",
+                    "BIOS accessible",
+                    "XMP/EXPO enabled",
+                    "Boot order configured"
+                ]
+            },
+            os: {
+                title: "OS Installation & Deployment",
+                installation: {
+                    title: "Windows 11 Installation",
+                    steps: [
+                        "Create Windows 11 bootable USB using Media Creation Tool",
+                        "Insert USB and restart PC",
+                        "Press boot menu key (F12/F11/ESC - varies by manufacturer)",
+                        "Select USB drive from boot menu",
+                        "Follow Windows installation wizard",
+                        "Partition drives as needed",
+                        "Complete user account setup"
+                    ]
+                },
+                postInstall: {
+                    title: "Post-Installation Checklist",
+                    critical: [
+                        "Run Windows Update until no updates remain",
+                        "Install chipset drivers from motherboard manufacturer",
+                        "Install GPU drivers from NVIDIA/AMD official site (NOT Windows Update)",
+                        "Verify Device Manager shows no unknown devices",
+                        "Install additional drivers: Audio, LAN, Wi-Fi",
+                        "Run stress test (CPU-Z, GPU benchmarks) to verify stability"
+                    ]
+                },
+                deployment: {
+                    title: "Final Deployment Steps",
+                    steps: [
+                        "Install essential software (browsers, office suite, etc.)",
+                        "Configure Windows settings (privacy, power plan)",
+                        "Create system restore point",
+                        "Run final hardware check",
+                        "Document system specifications",
+                        "Label PC with asset tag (if applicable for enterprise)"
+                    ]
+                },
+                checklist: [
+                    "Windows 11 installed successfully",
+                    "All Windows Updates completed",
+                    "Chipset drivers installed",
+                    "GPU drivers installed (official, not WU)",
+                    "Device Manager clean (no unknown devices)",
+                    "Audio tested and working",
+                    "Network connectivity verified",
+                    "System restore point created",
+                    "Stress test passed",
+                    "Ready for deployment"
+                ]
+            }
+        }
+    },
+    es: {
+        siteName: "Guía de Campo: Estándar de Ensamblaje de PC",
+        tagline: "Documentación Profesional de Construcción de PC",
+        navigation: {
+            prep: "Preparación y Seguridad",
+            hardware: "Ensamblaje de Hardware",
+            cabling: "Cableado",
+            boot: "Primer Arranque y Solución de Problemas",
+            os: "SO y Despliegue"
+        },
+        sections: {
+            prep: {
+                title: "Preparación y Seguridad",
+                tools: {
+                    title: "Herramientas Necesarias",
+                    items: [
+                        "Destornillador de estrella (punta magnética recomendada)",
+                        "Bridas / Tiras de velcro",
+                        "Pasta térmica (si no viene pre-aplicada)",
+                        "Pulsera antiestática (protección ESD)"
+                    ]
+                },
+                safety: {
+                    title: "Precauciones de Seguridad",
+                    items: [
+                        "Trabaja en superficie no conductora (mesa de madera, alfombra antiestática)",
+                        "Usa pulsera ESD conectada a metal con toma de tierra",
+                        "Evita trabajar sobre alfombra",
+                        "Mantén líquidos alejados del área de trabajo",
+                        "Maneja componentes por los bordes, evita tocar pines o contactos"
+                    ]
+                },
+                checklist: [
+                    "Todas las herramientas reunidas",
+                    "Espacio de trabajo preparado (limpio, no conductor)",
+                    "Protección ESD en su lugar",
+                    "Cajas de componentes abiertas e inventariadas"
+                ]
+            },
+            hardware: {
+                title: "Ensamblaje de Hardware",
+                cpu: {
+                    title: "Instalación de CPU y Refrigerador",
+                    warning: "⚠️ CRÍTICO: ¡Retira la cubierta protectora de plástico de la base del refrigerador antes de instalar!",
+                    steps: [
+                        "Abre el socket de CPU en la placa base (levanta el brazo de retención)",
+                        "Alinea la CPU con las muescas del socket (indicador de triángulo dorado)",
+                        "Coloca la CPU suavemente - NO fuerces",
+                        "Baja el brazo de retención para asegurar",
+                        "Aplica pasta térmica (punto del tamaño de un guisante en el centro) si no está pre-aplicada",
+                        "Instala el refrigerador de CPU según instrucciones del fabricante",
+                        "Conecta el cable del ventilador de CPU al conector CPU_FAN de la placa"
+                    ]
+                },
+                ram: {
+                    title: "Instalación de RAM",
+                    steps: [
+                        "Verifica el manual de la placa para ranuras DIMM correctas (usualmente A2/B2 para dual-channel)",
+                        "Abre los clips de retención en ambos lados de la ranura",
+                        "Alinea la muesca de la RAM con la llave de la ranura",
+                        "Presiona firmemente hasta que los clips encajen",
+                        "Verifica que ambos clips estén bloqueados"
+                    ]
+                },
+                case: {
+                    title: "Instalación de Placa Base en Gabinete",
+                    steps: [
+                        "Instala el panel I/O en el panel trasero del gabinete",
+                        "Instala separadores de placa según el tamaño de tu placa (ATX/mATX/ITX)",
+                        "Coloca cuidadosamente la placa, alineando con el panel I/O y separadores",
+                        "Asegura con tornillos - no aprietes en exceso",
+                        "Instala GPU si aplica (retira cubiertas de ranura PCIe primero)"
+                    ]
+                },
+                checklist: [
+                    "CPU instalada correctamente",
+                    "Pasta térmica aplicada (tamaño guisante)",
+                    "Cubierta de plástico del refrigerador REMOVIDA",
+                    "Ventilador de CPU conectado",
+                    "RAM instalada en ranuras correctas (A2/B2)",
+                    "Placa base asegurada con todos los separadores",
+                    "GPU instalada (si aplica)"
+                ]
+            },
+            cabling: {
+                title: "Cableado (La Parte Difícil)",
+                frontPanel: {
+                    title: "Conectores de Panel Frontal",
+                    warning: "⚠️ ¡Verifica el manual de tu placa base para la distribución exacta de pines!",
+                    connectors: [
+                        "Power SW (Botón de encendido) - Usualmente 2 pines",
+                        "Reset SW (Botón de reinicio) - Usualmente 2 pines",
+                        "HDD LED (Luz de actividad de disco duro) - Usualmente 2 pines, importa la polaridad (+/-)",
+                        "Power LED (+/-) - Usualmente 2 pines, importa la polaridad",
+                        "Conector USB 3.0 (conector de 19 pines con llave)",
+                        "Conectores USB 2.0 (9 pines)",
+                        "Audio HD (conector AC'97 o HDA)"
+                    ]
+                },
+                power: {
+                    title: "Cables de Fuente de Alimentación",
+                    cables: [
+                        "ATX 24 pines Principal (conector más grande, va a la placa base)",
+                        "8 pines (4+4) de CPU (parte superior izquierda de la placa cerca del CPU)",
+                        "PCIe 6+2 pines para GPU (si hay tarjeta gráfica dedicada instalada)",
+                        "SATA para unidades de almacenamiento",
+                        "Conectores de ventilador a los headers de la placa"
+                    ]
+                },
+                management: {
+                    title: "Consejo Pro: Gestión de Cables",
+                    tips: [
+                        "Pasa cables detrás de la bandeja de la placa cuando sea posible",
+                        "Usa bridas para agrupar y asegurar cables",
+                        "Mantén cables alejados de aspas de ventiladores",
+                        "Buena gestión de cables mejora el flujo de aire y la estética"
+                    ]
+                },
+                checklist: [
+                    "ATX 24 pines conectado",
+                    "8 pines de CPU conectado",
+                    "Alimentación de GPU conectada (si aplica)",
+                    "Conectores de panel frontal instalados (Power, Reset, LED)",
+                    "Conectores USB conectados",
+                    "Conector de audio conectado",
+                    "Unidades SATA/NVMe conectadas",
+                    "Cables organizados y asegurados"
+                ]
+            },
+            boot: {
+                title: "Primer Arranque y Solución de Problemas",
+                firstBoot: {
+                    title: "Encendido Inicial",
+                    steps: [
+                        "Verifica todas las conexiones de alimentación",
+                        "Asegura que el monitor esté conectado a la GPU (NO a la placa) si hay GPU instalada",
+                        "Enciende el interruptor de la PSU",
+                        "Presiona el botón de encendido",
+                        "Observa el POST (Power-On Self Test) - LEDs, ventiladores girando"
+                    ]
+                },
+                troubleshooting: {
+                    title: "Problemas Comunes",
+                    noVideo: {
+                        title: "Sin Salida de Video",
+                        solutions: [
+                            "Verifica que el cable del monitor esté en el puerto de la GPU, no en la placa (si hay GPU)",
+                            "Verifica que el monitor esté encendido y en la entrada correcta",
+                            "Re-asienta la GPU y cables de alimentación",
+                            "Intenta quitar y reinstalar la RAM",
+                            "Verifica LEDs de debug de la placa (CPU, RAM, VGA, BOOT)"
+                        ]
+                    },
+                    noPost: {
+                        title: "Sin POST / No Enciende",
+                        solutions: [
+                            "Verifica que la PSU esté encendida (ON)",
+                            "Verifica que 24 pines y 8 pines de CPU estén completamente insertados",
+                            "Verifica que el conector Power SW del panel frontal esté correcto",
+                            "Re-asienta la RAM (prueba un módulo a la vez)",
+                            "Verifica cortocircuitos por separadores de placa"
+                        ]
+                    }
+                },
+                bios: {
+                    title: "Configuración de BIOS",
+                    steps: [
+                        "Presiona DEL o F2 durante arranque para entrar a BIOS",
+                        "Habilita XMP/EXPO para RAM (velocidades nominales)",
+                        "Configura orden de arranque (USB primero para instalación de Windows)",
+                        "Habilita virtualización (VT-x/AMD-V) si es necesario",
+                        "Guarda y sal"
+                    ]
+                },
+                checklist: [
+                    "Sistema enciende (ventiladores giran, LEDs encienden)",
+                    "POST exitoso (salida de video lograda)",
+                    "Sin códigos de pitido o errores LED de debug",
+                    "BIOS accesible",
+                    "XMP/EXPO habilitado",
+                    "Orden de arranque configurado"
+                ]
+            },
+            os: {
+                title: "Instalación de SO y Despliegue",
+                installation: {
+                    title: "Instalación de Windows 11",
+                    steps: [
+                        "Crea USB booteable de Windows 11 usando Media Creation Tool",
+                        "Inserta USB y reinicia PC",
+                        "Presiona tecla de menú de arranque (F12/F11/ESC - varía según fabricante)",
+                        "Selecciona unidad USB del menú de arranque",
+                        "Sigue el asistente de instalación de Windows",
+                        "Particiona discos según necesidad",
+                        "Completa configuración de cuenta de usuario"
+                    ]
+                },
+                postInstall: {
+                    title: "Lista Post-Instalación",
+                    critical: [
+                        "Ejecuta Windows Update hasta que no queden actualizaciones",
+                        "Instala drivers de chipset del fabricante de la placa",
+                        "Instala drivers de GPU del sitio oficial de NVIDIA/AMD (NO Windows Update)",
+                        "Verifica que el Administrador de Dispositivos no muestre dispositivos desconocidos",
+                        "Instala drivers adicionales: Audio, LAN, Wi-Fi",
+                        "Ejecuta prueba de estrés (CPU-Z, benchmarks de GPU) para verificar estabilidad"
+                    ]
+                },
+                deployment: {
+                    title: "Pasos Finales de Despliegue",
+                    steps: [
+                        "Instala software esencial (navegadores, suite ofimática, etc.)",
+                        "Configura ajustes de Windows (privacidad, plan de energía)",
+                        "Crea punto de restauración del sistema",
+                        "Ejecuta verificación final de hardware",
+                        "Documenta especificaciones del sistema",
+                        "Etiqueta PC con tag de activo (si aplica para empresa)"
+                    ]
+                },
+                checklist: [
+                    "Windows 11 instalado correctamente",
+                    "Todas las actualizaciones de Windows completadas",
+                    "Drivers de chipset instalados",
+                    "Drivers de GPU instalados (oficial, no WU)",
+                    "Administrador de Dispositivos limpio (sin dispositivos desconocidos)",
+                    "Audio probado y funcionando",
+                    "Conectividad de red verificada",
+                    "Punto de restauración del sistema creado",
+                    "Prueba de estrés aprobada",
+                    "Listo para despliegue"
+                ]
+            }
+        }
+    },
+    de: {
+        siteName: "Außendienst-Leitfaden: PC-Zusammenbau-Standard",
+        tagline: "Professionelle PC-Bau-Dokumentation",
+        navigation: {
+            prep: "Vorbereitung & Sicherheit",
+            hardware: "Hardware-Zusammenbau",
+            cabling: "Verkabelung",
+            boot: "Erster Start & Fehlerbehebung",
+            os: "Betriebssystem & Bereitstellung"
+        },
+        sections: {
+            prep: {
+                title: "Vorbereitung und Sicherheit",
+                tools: {
+                    title: "Erforderliche Werkzeuge",
+                    items: [
+                        "Kreuzschlitzschraubendreher (magnetische Spitze empfohlen)",
+                        "Kabelbinder / Klettbänder",
+                        "Wärmeleitpaste (falls nicht vorinstalliert)",
+                        "Antistatisches Armband (ESD-Schutz)"
+                    ]
+                },
+                safety: {
+                    title: "Sicherheitsvorkehrungen",
+                    items: [
+                        "Auf nicht leitender Oberfläche arbeiten (Holztisch, antistatische Matte)",
+                        "ESD-Armband tragen, mit geerdetem Metall verbunden",
+                        "Nicht auf Teppich arbeiten",
+                        "Flüssigkeiten vom Arbeitsbereich fernhalten",
+                        "Komponenten an den Kanten anfassen, Pins oder Kontakte nicht berühren"
+                    ]
+                },
+                checklist: [
+                    "Alle Werkzeuge bereitgestellt",
+                    "Arbeitsbereich vorbereitet (sauber, nicht leitend)",
+                    "ESD-Schutz vorhanden",
+                    "Komponentenverpackungen geöffnet und inventarisiert"
+                ]
+            },
+            hardware: {
+                title: "Hardware-Zusammenbau",
+                cpu: {
+                    title: "CPU- und Kühler-Installation",
+                    warning: "⚠️ KRITISCH: Entfernen Sie die Plastikschutzabdeckung von der Kühlerbasis vor der Installation!",
+                    steps: [
+                        "CPU-Sockel auf Mainboard öffnen (Haltebügel anheben)",
+                        "CPU mit Sockelkerben ausrichten (goldener Dreiecksindikator)",
+                        "CPU vorsichtig einsetzen - NICHT forcieren",
+                        "Haltebügel zum Sichern herunterdrücken",
+                        "Wärmeleitpaste auftragen (erbsengroßer Punkt in der Mitte), falls nicht vorinstalliert",
+                        "CPU-Kühler gemäß Herstelleranweisung installieren",
+                        "CPU-Lüfterkabel an Mainboard CPU_FAN-Anschluss anschließen"
+                    ]
+                },
+                ram: {
+                    title: "RAM-Installation",
+                    steps: [
+                        "Mainboard-Handbuch für korrekte DIMM-Slots prüfen (üblicherweise A2/B2 für Dual-Channel)",
+                        "Halteclips auf beiden Seiten des Slots öffnen",
+                        "RAM-Kerbe mit Slot-Schlüssel ausrichten",
+                        "Fest drücken, bis Clips einrasten",
+                        "Beide Clips auf Verriegelung prüfen"
+                    ]
+                },
+                case: {
+                    title: "Mainboard-Installation im Gehäuse",
+                    steps: [
+                        "I/O-Blende in rückwärtige Gehäuseöffnung einsetzen",
+                        "Mainboard-Abstandshalter entsprechend Ihrer Board-Größe installieren (ATX/mATX/ITX)",
+                        "Mainboard vorsichtig platzieren, mit I/O-Blende und Abstandshaltern ausrichten",
+                        "Mit Schrauben sichern - nicht zu fest anziehen",
+                        "GPU installieren, falls zutreffend (PCIe-Slotabdeckungen zuerst entfernen)"
+                    ]
+                },
+                checklist: [
+                    "CPU korrekt installiert",
+                    "Wärmeleitpaste aufgetragen (Erbsengröße)",
+                    "Kühlerschutzfolie ENTFERNT",
+                    "CPU-Lüfter angeschlossen",
+                    "RAM in korrekten Slots eingesetzt (A2/B2)",
+                    "Mainboard mit allen Abstandshaltern gesichert",
+                    "GPU installiert (falls zutreffend)"
+                ]
+            },
+            cabling: {
+                title: "Verkabelung (Der schwierige Teil)",
+                frontPanel: {
+                    title: "Frontpanel-Anschlüsse",
+                    warning: "⚠️ Prüfen Sie Ihr Mainboard-Handbuch für die exakte Pin-Belegung!",
+                    connectors: [
+                        "Power SW (Ein-/Ausschalter) - Üblicherweise 2-polig",
+                        "Reset SW (Reset-Taste) - Üblicherweise 2-polig",
+                        "HDD LED (Festplattenaktivitäts-LED) - Üblicherweise 2-polig, Polarität beachten (+/-)",
+                        "Power LED (+/-) - Üblicherweise 2-polig, Polarität beachten",
+                        "USB 3.0-Anschluss (19-poliger kodierter Stecker)",
+                        "USB 2.0-Anschlüsse (9-polig)",
+                        "HD Audio (AC'97 oder HDA-Anschluss)"
+                    ]
+                },
+                power: {
+                    title: "Netzteilkabel",
+                    cables: [
+                        "24-poliges ATX-Hauptstromkabel (größter Stecker, geht zum Mainboard)",
+                        "8-poliges (4+4) CPU-Stromkabel (oben links auf Mainboard nahe CPU)",
+                        "PCIe 6+2-polig für GPU (falls dedizierte Grafikkarte installiert)",
+                        "SATA-Strom für Speicherlaufwerke",
+                        "Lüfteranschlüsse an Mainboard-Buchsen"
+                    ]
+                },
+                management: {
+                    title: "Profi-Tipp: Kabelmanagement",
+                    tips: [
+                        "Kabel wenn möglich hinter Mainboard-Träger verlegen",
+                        "Kabelbinder zum Bündeln und Sichern verwenden",
+                        "Kabel von Lüfterblättern fernhalten",
+                        "Gutes Kabelmanagement verbessert Luftstrom und Ästhetik"
+                    ]
+                },
+                checklist: [
+                    "24-poliges ATX-Stromkabel angeschlossen",
+                    "8-poliges CPU-Stromkabel angeschlossen",
+                    "GPU-Stromversorgung angeschlossen (falls zutreffend)",
+                    "Frontpanel-Anschlüsse installiert (Power, Reset, LED)",
+                    "USB-Anschlüsse verbunden",
+                    "Audio-Anschluss verbunden",
+                    "SATA/NVMe-Laufwerke verbunden",
+                    "Kabel organisiert und gesichert"
+                ]
+            },
+            boot: {
+                title: "Erster Start & Fehlerbehebung",
+                firstBoot: {
+                    title: "Erstinbetriebnahme",
+                    steps: [
+                        "Alle Stromanschlüsse doppelt prüfen",
+                        "Sicherstellen, dass Monitor an GPU angeschlossen ist (NICHT Mainboard), falls GPU installiert",
+                        "PSU-Schalter einschalten",
+                        "Power-Taste drücken",
+                        "POST (Power-On Self Test) beobachten - LEDs, Lüfter drehen"
+                    ]
+                },
+                troubleshooting: {
+                    title: "Häufige Probleme",
+                    noVideo: {
+                        title: "Keine Bildausgabe",
+                        solutions: [
+                            "Prüfen, ob Monitorkabel im GPU-Port steckt, nicht im Mainboard (falls GPU installiert)",
+                            "Prüfen, ob Monitor eingeschaltet und auf richtigen Eingang gestellt ist",
+                            "GPU und Stromkabel neu einsetzen",
+                            "RAM entfernen und neu einsetzen versuchen",
+                            "Mainboard-Debug-LEDs prüfen (CPU, RAM, VGA, BOOT)"
+                        ]
+                    },
+                    noPost: {
+                        title: "Kein POST / Startet nicht",
+                        solutions: [
+                            "Prüfen, ob PSU eingeschaltet ist (ON)",
+                            "Prüfen, ob 24-polig und 8-polig CPU-Strom vollständig eingesteckt",
+                            "Prüfen, ob Frontpanel Power SW-Anschluss korrekt ist",
+                            "RAM neu einsetzen (einzelne Riegel nacheinander testen)",
+                            "Auf Kurzschlüsse durch Mainboard-Abstandshalter prüfen"
+                        ]
+                    }
+                },
+                bios: {
+                    title: "BIOS-Einrichtung",
+                    steps: [
+                        "Während Boot DEL oder F2 drücken, um BIOS aufzurufen",
+                        "XMP/EXPO für RAM aktivieren (für nominale Geschwindigkeiten)",
+                        "Boot-Reihenfolge festlegen (USB zuerst für Windows-Installation)",
+                        "Virtualisierung aktivieren (VT-x/AMD-V), falls benötigt",
+                        "Speichern und beenden"
+                    ]
+                },
+                checklist: [
+                    "System startet (Lüfter drehen, LEDs leuchten)",
+                    "POST erfolgreich (Bildausgabe erreicht)",
+                    "Keine Piepton-Codes oder Debug-LED-Fehler",
+                    "BIOS zugänglich",
+                    "XMP/EXPO aktiviert",
+                    "Boot-Reihenfolge konfiguriert"
+                ]
+            },
+            os: {
+                title: "Betriebssystem-Installation & Bereitstellung",
+                installation: {
+                    title: "Windows 11-Installation",
+                    steps: [
+                        "Windows 11 bootfähigen USB mit Media Creation Tool erstellen",
+                        "USB einstecken und PC neu starten",
+                        "Boot-Menü-Taste drücken (F12/F11/ESC - variiert je Hersteller)",
+                        "USB-Laufwerk aus Boot-Menü wählen",
+                        "Windows-Installations-Assistenten folgen",
+                        "Laufwerke nach Bedarf partitionieren",
+                        "Benutzerkontoeinrichtung abschließen"
+                    ]
+                },
+                postInstall: {
+                    title: "Checkliste nach Installation",
+                    critical: [
+                        "Windows Update ausführen, bis keine Updates mehr vorhanden",
+                        "Chipsatz-Treiber vom Mainboard-Hersteller installieren",
+                        "GPU-Treiber von offizieller NVIDIA/AMD-Website installieren (NICHT Windows Update)",
+                        "Im Geräte-Manager prüfen, dass keine unbekannten Geräte angezeigt werden",
+                        "Zusätzliche Treiber installieren: Audio, LAN, WLAN",
+                        "Stresstest durchführen (CPU-Z, GPU-Benchmarks) zur Stabilitätsprüfung"
+                    ]
+                },
+                deployment: {
+                    title: "Finale Bereitstellungsschritte",
+                    steps: [
+                        "Essentielle Software installieren (Browser, Office-Suite, etc.)",
+                        "Windows-Einstellungen konfigurieren (Datenschutz, Energieplan)",
+                        "Systemwiederherstellungspunkt erstellen",
+                        "Finale Hardware-Prüfung durchführen",
+                        "Systemspezifikationen dokumentieren",
+                        "PC mit Asset-Tag beschriften (falls zutreffend für Unternehmen)"
+                    ]
+                },
+                checklist: [
+                    "Windows 11 erfolgreich installiert",
+                    "Alle Windows-Updates abgeschlossen",
+                    "Chipsatz-Treiber installiert",
+                    "GPU-Treiber installiert (offiziell, nicht WU)",
+                    "Geräte-Manager sauber (keine unbekannten Geräte)",
+                    "Audio getestet und funktioniert",
+                    "Netzwerkverbindung überprüft",
+                    "Systemwiederherstellungspunkt erstellt",
+                    "Stresstest bestanden",
+                    "Bereit zur Bereitstellung"
+                ]
+            }
+        }
+    }
+};
+
+export const supportedLanguages = ['en', 'es', 'de'];
+
+export const languageNames = {
+    en: 'English',
+    es: 'Español',
+    de: 'Deutsch'
+};

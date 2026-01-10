@@ -1,0 +1,517 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { translations } from '../data/translations';
+import LanguageSelector from '../components/LanguageSelector';
+import Checklist from '../components/Checklist';
+import { Menu, X, AlertTriangle, Lightbulb } from 'lucide-react';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = translations[lang as keyof typeof translations];
+
+// Helper to render markdown bold tags
+const md = (text: string) => text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+---
+
+<Layout title={t.siteName} description={t.tagline} lang={lang}>
+  <div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- Mobile Header -->
+    <header class="lg:hidden bg-white border-b border-gray-200 p-4 sticky top-0 z-40">
+      <div class="flex items-center justify-between">
+        <h1 class="text-lg font-bold text-brand-primary">Field Ops Guide</h1>
+        <LanguageSelector client:load currentLang={lang} />
+      </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="lg:w-80 bg-white border-r border-gray-200 lg:sticky lg:top-0 lg:h-screen overflow-y-auto">
+      <div class="p-6">
+        <div class="hidden lg:flex items-center justify-between mb-8">
+          <div>
+            <h1 class="text-2xl font-bold text-brand-primary">Field Ops Guide</h1>
+            <p class="text-sm text-gray-600 mt-1">{t.tagline}</p>
+          </div>
+        </div>
+
+        <div class="hidden lg:block mb-6">
+          <LanguageSelector client:load currentLang={lang} />
+        </div>
+
+        <ul class="space-y-2">
+          <li>
+            <a href={`#prep`} class="block p-3 rounded-lg hover:bg-brand-primary hover:text-white transition-colors">
+              {t.navigation.prep}
+            </a>
+          </li>
+          <li>
+            <a href={`#hardware`} class="block p-3 rounded-lg hover:bg-brand-primary hover:text-white transition-colors">
+              {t.navigation.hardware}
+            </a>
+          </li>
+          <li>
+            <a href={`#cabling`} class="block p-3 rounded-lg hover:bg-brand-primary hover:text-white transition-colors">
+              {t.navigation.cabling}
+            </a>
+          </li>
+          <li>
+            <a href={`#boot`} class="block p-3 rounded-lg hover:bg-brand-primary hover:text-white transition-colors">
+              {t.navigation.boot}
+            </a>
+          </li>
+          <li>
+            <a href={`#os`} class="block p-3 rounded-lg hover:bg-brand-primary hover:text-white transition-colors">
+              {t.navigation.os}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 lg:p-12 max-w-5xl">
+      <div class="mb-12 text-center lg:text-left">
+        <h1 class="text-4xl lg:text-5xl font-bold text-brand-dark mb-4">{t.siteName}</h1>
+        <p class="text-xl text-gray-600">{t.tagline}</p>
+      </div>
+
+      <!-- Section 1: Prep & Safety -->
+      <section id="prep" class="mb-16 scroll-mt-6">
+        <h2 class="text-3xl font-bold text-brand-dark mb-6 border-b-4 border-brand-primary inline-block pb-2">
+          {t.sections.prep.title}
+        </h2>
+
+        <div class="section-content">
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.prep.tools.title}</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+              {t.sections.prep.tools.items.map((item: string) => <li set:html={md(item)} />)}
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.prep.safety.title}</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+              {t.sections.prep.safety.items.map((item: string) => <li set:html={md(item)} />)}
+            </ul>
+          </div>
+
+          <Checklist client:load items={t.sections.prep.checklist} sectionId="prep" lang={lang} />
+        </div>
+      </section>
+
+      <!-- Section 2: Hardware Assembly -->
+      <section id="hardware" class="mb-16 scroll-mt-6">
+        <h2 class="text-3xl font-bold text-brand-dark mb-6 border-b-4 border-brand-primary inline-block pb-2">
+          {t.sections.hardware.title}
+        </h2>
+
+        <div class="section-content">
+          <!-- Beginner-Friendly Component Explanations -->
+          {t.sections.hardware.beginner && (
+            <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-8 rounded-r-lg">
+              <div class="flex items-start gap-3 mb-4">
+                <Lightbulb className="text-green-600 flex-shrink-0" size={28} />
+                <h3 class="text-xl font-bold text-green-900">{t.sections.hardware.beginner.title}</h3>
+              </div>
+              <ul class="space-y-3 text-gray-700 pl-11">
+                {t.sections.hardware.beginner.items.map((item: string) => (
+                  <li set:html={item} class="leading-relaxed" />
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- CPU Installation -->
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.hardware.cpu.title}</h3>
+            
+            <div class="warning-box">
+              <div class="flex items-start gap-3">
+                <AlertTriangle className="text-red-600 flex-shrink-0" size={24} />
+                <p class="font-semibold text-red-800">{t.sections.hardware.cpu.warning}</p>
+              </div>
+            </div>
+
+            <ol class="list-decimal list-inside space-y-2 text-gray-700 mt-4">
+              {t.sections.hardware.cpu.steps.map((step: string) => <li set:html={md(step)} />)}
+            </ol>
+
+            {t.sections.hardware.cpu.image && (
+              <div class="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <img 
+                  src={t.sections.hardware.cpu.image.src} 
+                  alt={t.sections.hardware.cpu.image.alt} 
+                  class="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                />
+                {t.sections.hardware.cpu.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.hardware.cpu.image.caption}</p>}
+              </div>
+            )}
+          </div>
+
+          <!-- RAM Installation -->
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.hardware.ram.title}</h3>
+            
+            {t.sections.hardware.ram.explanation && (
+              <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded-r-lg">
+                <div class="flex items-start gap-2">
+                  <Lightbulb className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                  <p set:html={t.sections.hardware.ram.explanation} class="text-gray-700" />
+                </div>
+              </div>
+            )}
+
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+              {t.sections.hardware.ram.steps.map((step: string) => <li set:html={md(step)} />)}
+            </ol>
+
+            {t.sections.hardware.ram.image && (
+              <div class="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <img 
+                  src={t.sections.hardware.ram.image.src} 
+                  alt={t.sections.hardware.ram.image.alt} 
+                  class="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                />
+                {t.sections.hardware.ram.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.hardware.ram.image.caption}</p>}
+              </div>
+            )}
+          </div>
+
+          <!-- Motherboard Installation -->
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.hardware.case.title}</h3>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+              {t.sections.hardware.case.steps.map((step: string) => <li set:html={md(step)} />)}
+            </ol>
+
+            {t.sections.hardware.case.image && (
+              <div class="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <img 
+                  src={t.sections.hardware.case.image.src} 
+                  alt={t.sections.hardware.case.image.alt} 
+                  class="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                />
+                {t.sections.hardware.case.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.hardware.case.image.caption}</p>}
+              </div>
+            )}
+          </div>
+
+          <Checklist client:load items={t.sections.hardware.checklist} sectionId="hardware" lang={lang} />
+        </div>
+      </section>
+
+      <!-- Section 3: Cabling -->
+      <section id="cabling" class="mb-16 scroll-mt-6">
+        <h2 class="text-3xl font-bold text-brand-dark mb-6 border-b-4 border-brand-primary inline-block pb-2">
+          {t.sections.cabling.title}
+        </h2>
+
+        <div class="section-content">
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.cabling.frontPanel.title}</h3>
+            
+            <div class="warning-box">
+              <div class="flex items-start gap-3">
+                <AlertTriangle className="text-red-600 flex-shrink-0" size={24} />
+                <p class="font-semibold text-red-800">{t.sections.cabling.frontPanel.warning}</p>
+              </div>
+            </div>
+
+            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-4">
+              {t.sections.cabling.frontPanel.connectors.map((conn: string) => <li set:html={md(conn)} />)}
+            </ul>
+
+            {t.sections.cabling.frontPanel.image && (
+              <div class="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <img 
+                  src={t.sections.cabling.frontPanel.image.src} 
+                  alt={t.sections.cabling.frontPanel.image.alt} 
+                  class="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                />
+                {t.sections.cabling.frontPanel.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.cabling.frontPanel.image.caption}</p>}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.cabling.power.title}</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+              {t.sections.cabling.power.cables.map((cable: string) => <li set:html={md(cable)} />)}
+            </ul>
+            {t.sections.cabling.power.image && (
+              <div class="mt-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <img 
+                  src={t.sections.cabling.power.image.src} 
+                  alt={t.sections.cabling.power.image.alt} 
+                  class="w-full max-w-lg mx-auto rounded shadow-sm"
+                />
+                {t.sections.cabling.power.image.caption && <p class="text-xs text-gray-500 text-center mt-2">{t.sections.cabling.power.image.caption}</p>}
+              </div>
+            )}
+          </div>
+
+          <!-- Fans Section -->
+          {t.sections.cabling.fans && (
+            <div>
+              <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.cabling.fans.title}</h3>
+              <div class="info-box">
+                <ul class="list-disc list-inside space-y-1 mb-3">
+                  {t.sections.cabling.fans.headers.map((h: string) => <li set:html={md(h)} />)}
+                </ul>
+                <p class="font-semibold text-brand-dark" set:html={md(t.sections.cabling.fans.pwm)} />
+              </div>
+              {t.sections.cabling.fans.image && (
+                <div class="mt-4 bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                   <img 
+                    src={t.sections.cabling.fans.image.src} 
+                    alt={t.sections.cabling.fans.image.alt} 
+                    class="w-full max-w-md mx-auto"
+                  />
+                  {t.sections.cabling.fans.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.cabling.fans.image.caption}</p>}
+                </div>
+              )}
+            </div>
+          )}
+
+          <!-- RGB Section -->
+          {t.sections.cabling.rgb && (
+            <div>
+               <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.cabling.rgb.title}</h3>
+               <div class="warning-box">
+                 <p class="font-bold text-red-700 text-lg mb-2">{t.sections.cabling.rgb.warning}</p>
+                 <ul class="list-disc list-inside space-y-1 text-gray-800">
+                    {t.sections.cabling.rgb.types.map((type: string) => <li set:html={md(type)} />)}
+                 </ul>
+               </div>
+               {t.sections.cabling.rgb.image && (
+                 <div class="mt-4 bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                   <img 
+                    src={t.sections.cabling.rgb.image.src} 
+                    alt={t.sections.cabling.rgb.image.alt} 
+                    class="w-full max-w-lg mx-auto"
+                  />
+                  {t.sections.cabling.rgb.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.cabling.rgb.image.caption}</p>}
+                 </div>
+               )}
+            </div>
+          )}
+
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.cabling.management.title}</h3>
+            <div class="tip-box">
+              <div class="flex items-start gap-3">
+                <Lightbulb className="text-brand-primary flex-shrink-0" size={24} />
+                <ul class="list-disc list-inside space-y-2">
+                  {t.sections.cabling.management.tips.map((tip: string) => <li set:html={md(tip)} />)}
+                </ul>
+              </div>
+            </div>
+            
+            {t.sections.cabling.management.image && (
+              <div class="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <img 
+                  src={t.sections.cabling.management.image.src} 
+                  alt={t.sections.cabling.management.image.alt} 
+                  class="w-full max-w-2xl mx-auto rounded-lg shadow-md"
+                />
+                {t.sections.cabling.management.image.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.cabling.management.image.caption}</p>}
+              </div>
+            )}
+          </div>
+
+          <Checklist client:load items={t.sections.cabling.checklist} sectionId="cabling" lang={lang} />
+        </div>
+      </section>
+
+      <!-- Section 4: First Boot & Troubleshooting -->
+      <section id="boot" class="mb-16 scroll-mt-6">
+        <h2 class="text-3xl font-bold text-brand-dark mb-6 border-b-4 border-brand-primary inline-block pb-2">
+          {t.sections.boot.title}
+        </h2>
+
+        <div class="section-content">
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.boot.firstBoot.title}</h3>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                  {t.sections.boot.firstBoot.steps.map((step: string) => <li set:html={md(step)} />)}
+            </ol>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-4">{t.sections.boot.troubleshooting.title}</h3>
+            
+            <div class="bg-gray-100 rounded-lg p-5 mb-4">
+              <h4 class="font-semibold text-lg text-brand-dark mb-2">{t.sections.boot.troubleshooting.noVideo.title}</h4>
+              <ul class="list-disc list-inside space-y-2 text-gray-700">
+                {t.sections.boot.troubleshooting.noVideo.solutions.map((sol: string) => <li set:html={md(sol)} />)}
+              </ul>
+            </div>
+
+            </div>
+            
+            <!-- Clear CMOS Guide -->
+            {t.sections.boot.troubleshooting.cmos && (
+              <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-6 rounded-r-lg shadow-sm">
+                <div class="flex items-start gap-3">
+                  <div class="flex-grow">
+                    <h4 class="font-bold text-lg text-brand-dark mb-2">{t.sections.boot.troubleshooting.cmos.title}</h4>
+                    <ul class="list-decimal list-inside space-y-2 text-gray-700 mb-4">
+                      {t.sections.boot.troubleshooting.cmos.steps.map((step: string) => <li set:html={step} />)}
+                    </ul>
+                    {t.sections.boot.troubleshooting.cmos.image && (
+                       <img 
+                        src={t.sections.boot.troubleshooting.cmos.image.src} 
+                        alt={t.sections.boot.troubleshooting.cmos.image.alt} 
+                        class="w-full max-w-lg mx-auto rounded border border-gray-300 shadow-sm"
+                      />
+                    )}
+                    {t.sections.boot.troubleshooting.cmos.image?.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.boot.troubleshooting.cmos.image.caption}</p>}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <div class="bg-gray-100 rounded-lg p-5">
+              <h4 class="font-semibold text-lg text-brand-dark mb-2">{t.sections.boot.troubleshooting.noPost.title}</h4>
+              <ul class="list-disc list-inside space-y-2 text-gray-700">
+                {t.sections.boot.troubleshooting.noPost.solutions.map((sol: string) => <li set:html={md(sol)} />)} <!-- Updated to set:html for bold text -->
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.boot.bios.title}</h3>
+            
+            {t.sections.boot.bios.explanation && (
+               <p class="text-gray-700 mb-4 italic" set:html={t.sections.boot.bios.explanation} />
+            )}
+
+            <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-8">
+              {t.sections.boot.bios.steps.map((step: string) => <li set:html={md(step)} />)}
+            </ol>
+
+            <div class="space-y-8">
+              <!-- XMP/EXPO -->
+              {t.sections.boot.bios.xmpExpo && (
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                  <h4 class="text-xl font-bold text-brand-dark mb-2">{t.sections.boot.bios.xmpExpo.title}</h4>
+                  <p class="text-gray-700 mb-4" set:html={t.sections.boot.bios.xmpExpo.description} />
+                  {t.sections.boot.bios.xmpExpo.image && (
+                    <img 
+                      src={t.sections.boot.bios.xmpExpo.image.src} 
+                      alt={t.sections.boot.bios.xmpExpo.image.alt} 
+                      class="w-full max-w-lg mx-auto rounded shadow-sm"
+                    />
+                  )}
+                  {t.sections.boot.bios.xmpExpo.image?.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.boot.bios.xmpExpo.image.caption}</p>}
+                </div>
+              )}
+
+              <!-- UEFI vs Legacy -->
+              {t.sections.boot.bios.uefiLegacy && (
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                  <h4 class="text-xl font-bold text-brand-dark mb-2">{t.sections.boot.bios.uefiLegacy.title}</h4>
+                  <p class="text-gray-700 mb-4" set:html={t.sections.boot.bios.uefiLegacy.description} />
+                  {t.sections.boot.bios.uefiLegacy.image && (
+                    <img 
+                      src={t.sections.boot.bios.uefiLegacy.image.src} 
+                      alt={t.sections.boot.bios.uefiLegacy.image.alt} 
+                      class="w-full max-w-lg mx-auto rounded shadow-sm"
+                    />
+                  )}
+                  {t.sections.boot.bios.uefiLegacy.image?.caption && <p class="text-sm text-gray-600 text-center mt-2">{t.sections.boot.bios.uefiLegacy.image.caption}</p>}
+                </div>
+              )}
+              
+               <!-- ERP -->
+               {t.sections.boot.bios.erp && (
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                  <h4 class="text-xl font-bold text-brand-dark mb-2">{t.sections.boot.bios.erp.title}</h4>
+                  <p class="text-gray-700" set:html={t.sections.boot.bios.erp.description} />
+                </div>
+              )}
+            </div>
+          </div>
+
+          <Checklist client:load items={t.sections.boot.checklist} sectionId="boot" lang={lang} />
+        </div>
+      </section>
+
+      <!-- Section 5: OS & Deployment -->
+      <section id="os" class="mb-16 scroll-mt-6">
+        <h2 class="text-3xl font-bold text-brand-dark mb-6 border-b-4 border-brand-primary inline-block pb-2">
+          {t.sections.os.title}
+        </h2>
+
+        <div class="section-content">
+          <!-- USB Creation -->
+          <div class="mb-8">
+             <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.os.usbCreation.title}</h3>
+             <div class="space-y-4">
+                 <p set:html={md(t.sections.os.usbCreation.method1)} class="text-gray-700" />
+                 <p set:html={md(t.sections.os.usbCreation.method2)} class="text-gray-700" />
+             </div>
+          </div>
+
+          <!-- Installation -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.os.installation.title}</h3>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+              {t.sections.os.installation.steps.map((step: string) => <li set:html={md(step)} />)}
+            </ol>
+          </div>
+
+          <!-- Drivers -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.os.drivers.title}</h3>
+             <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded-r-lg">
+                <div class="flex items-start gap-2">
+                  <Lightbulb className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                  <p set:html={md(t.sections.os.drivers.explanation)} class="text-gray-700" />
+                </div>
+              </div>
+            <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                {t.sections.os.drivers.order.map((item: string) => <li set:html={md(item)} />)}
+            </ol>
+          </div>
+
+          <!-- Post-Install -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.os.postInstall.title}</h3>
+            <div class="warning-box">
+              <div class="flex items-start gap-3">
+                <AlertTriangle className="text-red-600 flex-shrink-0" size={24} />
+                <ul class="list-disc list-inside space-y-2 text-red-800">
+                  {t.sections.os.postInstall.critical.map((item: string) => <li set:html={md(item)} />)}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Optimization -->
+          <div class="mb-8">
+              <h3 class="text-2xl font-semibold text-brand-dark mb-3">{t.sections.os.optimization.title}</h3>
+              <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                  {t.sections.os.optimization.steps.map((step: string) => <li set:html={md(step)} />)}
+              </ol>
+          </div>
+        </div>
+
+        <Checklist client:load items={t.sections.os.checklist} sectionId="os" lang={lang} />
+      </section>
+
+      <!-- Footer -->
+      <footer class="mt-16 pt-8 border-t border-gray-300 text-center text-gray-600">
+        <p>© 2026 Field Ops Guide - Professional PC Assembly Documentation</p>
+        <p class="text-sm mt-2">Standardized Field Operations Guide</p>
+      </footer>
+    </main>
+  </div>
+</Layout>
