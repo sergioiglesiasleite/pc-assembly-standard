@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pc-assembly-standard.vercel.app/sitemap.xml

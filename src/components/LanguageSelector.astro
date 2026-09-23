@@ -1,0 +1,50 @@
+---
+import { Globe } from 'lucide-react';
+import { languageNames, supportedLanguages, type SupportedLanguage } from '../data/translations';
+
+interface Props {
+  currentLang: SupportedLanguage;
+  label: string;
+}
+
+const { currentLang, label } = Astro.props;
+---
+
+<details class="group relative" data-language-selector>
+  <summary
+    aria-label={label}
+    class="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 font-medium text-brand-dark hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary [&::-webkit-details-marker]:hidden"
+  >
+    <Globe size={18} aria-hidden="true" />
+    <span class="uppercase">{currentLang}</span>
+  </summary>
+  <div class="absolute right-0 z-50 mt-2 min-w-40 rounded-lg border border-gray-200 bg-white p-1 shadow-lg lg:left-0 lg:right-auto">
+    {supportedLanguages.map((lang) => (
+      <a
+        href={`/${lang}`}
+        lang={lang}
+        aria-current={lang === currentLang ? 'page' : undefined}
+        data-language-link
+        class="block min-h-11 rounded-md px-3 py-2 text-brand-dark hover:bg-green-50 focus-visible:outline-2 focus-visible:outline-brand-primary aria-[current=page]:bg-green-50 aria-[current=page]:font-semibold"
+      >
+        <span class="uppercase">{lang}</span> — {languageNames[lang]}
+      </a>
+    ))}
+  </div>
+</details>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('[data-language-selector]').forEach((details) => {
+    details.querySelectorAll<HTMLAnchorElement>('[data-language-link]').forEach((link) => {
+      link.addEventListener('click', () => {
+        link.hash = window.location.hash;
+      });
+    });
+    details.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        details.open = false;
+        details.querySelector<HTMLElement>('summary')?.focus();
+      }
+    });
+  });
+</script>

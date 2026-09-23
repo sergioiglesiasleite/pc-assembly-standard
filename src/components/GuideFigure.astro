@@ -1,0 +1,48 @@
+---
+interface GuideImage {
+  readonly src: string;
+  readonly alt: string;
+  readonly caption: string;
+}
+
+interface Props {
+  image: GuideImage;
+  maxWidth?: 'md' | 'lg' | '2xl';
+  surface?: 'muted' | 'white' | 'plain';
+}
+
+const {
+  image,
+  maxWidth = '2xl',
+  surface = 'muted',
+} = Astro.props;
+
+const maxWidthClasses = {
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  '2xl': 'max-w-2xl',
+};
+
+const surfaceClasses = {
+  muted: 'bg-gray-50 border border-gray-200',
+  white: 'bg-white border border-gray-200 shadow-sm',
+  plain: '',
+};
+---
+
+<figure class:list={['mt-6 rounded-lg p-4', surfaceClasses[surface]]}>
+  <img
+    src={image.src}
+    alt={image.alt}
+    width="1024"
+    height="1024"
+    loading="lazy"
+    decoding="async"
+    class:list={['mx-auto h-auto w-full rounded-lg', maxWidthClasses[maxWidth]]}
+  />
+  {image.caption && (
+    <figcaption class="mt-2 text-center text-sm text-gray-600">
+      {image.caption}
+    </figcaption>
+  )}
+</figure>

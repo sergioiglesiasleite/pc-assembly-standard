@@ -1,0 +1,114 @@
+---
+import { Menu, X } from 'lucide-react';
+import LanguageSelector from './LanguageSelector.astro';
+import type { GuideTranslation, SupportedLanguage } from '../data/translations';
+
+interface Props {
+  currentLang: SupportedLanguage;
+  tagline: string;
+  navigation: GuideTranslation['navigation'];
+  navigationLabel: string;
+  languageLabel: string;
+  siteName: string;
+}
+
+const {
+  currentLang,
+  tagline,
+  navigation,
+  navigationLabel,
+  languageLabel,
+  siteName,
+} = Astro.props;
+
+const items = [
+  { id: 'prep', label: navigation.prep },
+  { id: 'hardware', label: navigation.hardware },
+  { id: 'cabling', label: navigation.cabling },
+  { id: 'boot', label: navigation.boot },
+  { id: 'os', label: navigation.os },
+];
+---
+
+<header data-mobile-header class="sticky top-0 z-40 border-b border-gray-200 bg-white px-4 py-3 lg:hidden">
+  <div class="flex items-center justify-between gap-3">
+    <a href={`/${currentLang}`} class="text-lg font-bold text-brand-primary">
+      PC Guide
+    </a>
+
+    <div class="flex items-center gap-2">
+      <LanguageSelector currentLang={currentLang} label={languageLabel} />
+
+      <details class="group relative" data-mobile-navigation>
+        <summary
+          class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-gray-300 bg-white text-brand-dark transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary [&::-webkit-details-marker]:hidden"
+          aria-label={navigationLabel}
+        >
+          <Menu className="group-open:hidden" size={22} aria-hidden="true" />
+          <X className="hidden group-open:block" size={22} aria-hidden="true" />
+        </summary>
+
+        <nav
+          aria-label={navigationLabel}
+          class="absolute right-0 mt-2 w-[min(20rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-3 shadow-xl"
+        >
+          <ul class="space-y-1">
+            {items.map((item) => (
+              <li>
+                <a
+                  href={`#${item.id}`}
+                  class="block rounded-lg px-4 py-3 font-medium text-brand-dark transition-colors hover:bg-green-50 hover:text-brand-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<aside data-desktop-navigation class="hidden w-80 shrink-0 border-r border-gray-200 bg-white lg:sticky lg:top-0 lg:block lg:h-screen lg:overflow-y-auto">
+  <nav aria-label={navigationLabel} class="p-6">
+    <div class="mb-8">
+      <a href={`/${currentLang}`} class="text-2xl font-bold text-brand-primary">
+        {siteName}
+      </a>
+      <p class="mt-1 text-sm text-gray-600">{tagline}</p>
+    </div>
+
+    <div class="mb-6">
+      <LanguageSelector currentLang={currentLang} label={languageLabel} />
+    </div>
+
+    <ul class="space-y-2">
+      {items.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="block rounded-lg p-3 text-brand-dark transition-colors hover:bg-brand-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('[data-mobile-navigation]').forEach((details) => {
+    details.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => details.removeAttribute('open'));
+    });
+
+    details.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        details.removeAttribute('open');
+        details.querySelector<HTMLElement>('summary')?.focus();
+      }
+    });
+  });
+</script>

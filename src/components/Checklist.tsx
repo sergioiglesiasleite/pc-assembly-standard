@@ -1,93 +1,101 @@
-import { useState, useEffect } from 'react';
-import { CheckCircle2, Circle } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import type { GuideTranslation } from '../data/translations';
+import {
+  checklistStorageKey,
+  readChecklistProgress,
+  serializeChecklistProgress,
+} from '../data/checklistStorage';
 
 interface ChecklistProps {
-    items: string[];
-    sectionId: string;
-    lang: string;
+  items: readonly string[];
+  ids: readonly string[];
+  sectionId: string;
+  labels: Pick<
+    GuideTranslation['ui'],
+    'checklistTitle' | 'progressLabel' | 'resetLabel' | 'resetConfirm'
+  >;
 }
 
-export default function Checklist({ items, sectionId, lang }: ChecklistProps) {
-    const storageKey = `checklist-${lang}-${sectionId}`;
-    const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
+export default function Checklist({ items, ids, sectionId, labels }: ChecklistProps) {
+  const storageKey = checklistStorageKey(sectionId);
+  const [checked, setChecked] = useState<Set<string>>(new Set());
+  const [loaded, setLoaded] = useState(false);
 
-    // Load from localStorage on mount
-    useEffect(() => {
-        try {
-            const saved = localStorage.getItem(storageKey);
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                setCheckedItems(new Set(parsed));
-            }
-        } catch (error) {
-            console.error('Error loading checklist:', error);
-        }
-    }, [storageKey]);
+  useEffect(() => {
+    try {
+      setChecked(readChecklistProgress(localStorage.getItem(storageKey), ids));
+    } catch {
+      setChecked(new Set());
+    }
+    setLoaded(true);
+  }, [storageKey, ids]);
 
-    // Save to localStorage whenever checkedItems changes
-    useEffect(() => {
-        try {
-            localStorage.setItem(storageKey, JSON.stringify(Array.from(checkedItems)));
-        } catch (error) {
-            console.error('Error saving checklist:', error);
-        }
-    }, [checkedItems, storageKey]);
+  useEffect(() => {
+    if (!loaded) return;
+    try {
+      localStorage.setItem(storageKey, serializeChecklistProgress(checked));
+    } catch {
+      // The checklist remains usable during this visit if storage is disabled.
+    }
+  }, [checked, loaded, storageKey]);
 
-    const toggleItem = (index: number) => {
-        setCheckedItems((prev) => {
-            const newSet = new Set(prev);
-            if (newSet.has(index)) {
-                newSet.delete(index);
-            } else {
-                newSet.add(index);
-            }
-            return newSet;
-        });
-    };
+  const toggle = (id: string) => {
+    setChecked((previous) => {
+      const next = new Set(previous);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
-    const progress = items.length > 0 ? (checkedItems.size / items.length) * 100 : 0;
+  const reset = () => {
+    if (window.confirm(labels.resetConfirm)) setChecked(new Set());
+  };
 
-    return (
-        <div className="bg-white border border-gray-200 rounded-lg p-6 my-6">
-            <div className="mb-4">
-                <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-semibold text-lg text-brand-dark">
-                        {lang === 'en' ? 'Checklist' : lang === 'es' ? 'Lista de Verificación' : 'Checkliste'}
-                    </h4>
-                    <span className="text-sm text-gray-600">
-                        {checkedItems.size}/{items.length}
-                    </span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                        className="bg-brand-primary h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${progress}%` }}
-                    />
-                </div>
-            </div>
+  const completed = ids.filter((id) => checked.has(id)).length;
 
-            <ul className="space-y-3">
-                {items.map((item, index) => {
-                    const isChecked = checkedItems.has(index);
-                    return (
-                        <li key={index}>
-                            <button
-                                onClick={() => toggleItem(index)}
-                                className="flex items-start gap-3 w-full text-left hover:bg-gray-50 p-2 rounded transition-colors"
-                            >
-                                {isChecked ? (
-                                    <CheckCircle2 className="text-brand-primary flex-shrink-0 mt-0.5" size={20} />
-                                ) : (
-                                    <Circle className="text-gray-400 flex-shrink-0 mt-0.5" size={20} />
-                                )}
-                                <span className={`${isChecked ? 'line-through text-gray-500' : 'text-brand-dark'}`}>
-                                    {item}
-                                </span>
-                            </button>
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
+  return (
+    <section className="my-6 rounded-lg border border-gray-200 bg-white p-5 sm:p-6" aria-labelledby={`checklist-${sectionId}`}>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <h3 id={`checklist-${sectionId}`} className="text-lg font-semibold text-brand-dark">
+          {labels.checklistTitle}
+        </h3>
+        <span className="text-sm text-gray-700">{completed}/{items.length}</span>
+      </div>
+      <div
+        role="progressbar"
+        aria-label={labels.progressLabel}
+        aria-valuemin={0}
+        aria-valuemax={items.length}
+        aria-valuenow={completed}
+        className="mb-5 h-2 overflow-hidden rounded-full bg-gray-200"
+      >
+        <div className="h-full bg-brand-primary" style={{ width: `${items.length ? (completed / items.length) * 100 : 0}%` }} />
+      </div>
+      <ul className="space-y-2">
+        {items.map((item, index) => {
+          const id = ids[index];
+          if (!id) return null;
+          return (
+            <li key={id}>
+              <label className="flex min-h-11 cursor-pointer items-start gap-3 rounded-lg p-2 hover:bg-gray-50 focus-within:outline-2 focus-within:outline-brand-primary">
+                <input
+                  type="checkbox"
+                  checked={checked.has(id)}
+                  onChange={() => toggle(id)}
+                  className="mt-1 h-5 w-5 shrink-0 accent-brand-primary"
+                />
+                <span className={checked.has(id) ? 'text-gray-600 line-through' : 'text-brand-dark'}>{item}</span>
+              </label>
+            </li>
+          );
+        })}
+      </ul>
+      {completed > 0 && (
+        <button type="button" onClick={reset} className="mt-5 min-h-11 rounded-lg px-3 text-sm font-medium text-brand-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-brand-primary">
+          {labels.resetLabel}
+        </button>
+      )}
+    </section>
+  );
 }

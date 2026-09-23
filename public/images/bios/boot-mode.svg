@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img">
+  <rect width="1024" height="1024" rx="48" fill="#f0f7f4"/>
+  <rect x="112" y="250" width="370" height="520" rx="28" fill="#ffffff" stroke="#087d59" stroke-width="12"/>
+  <rect x="542" y="250" width="370" height="520" rx="28" fill="#ffffff" stroke="#a6b8ae" stroke-width="12"/>
+  <g font-family="system-ui,sans-serif" font-size="56" font-weight="700" text-anchor="middle"><text x="297" y="360" fill="#087d59">UEFI</text><text x="727" y="360" fill="#5a7166">Legacy</text></g>
+  <path d="M297 430l95 40v95c0 74-45 120-95 145-50-25-95-71-95-145v-95z" fill="#d7e8df" stroke="#087d59" stroke-width="12"/>
+  <path d="M257 555l30 30 58-69" fill="none" stroke="#087d59" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="727" cy="548" r="108" fill="#e9efeb" stroke="#a6b8ae" stroke-width="12"/>
+  <path d="M727 483v72l48 35" fill="none" stroke="#5a7166" stroke-width="17" stroke-linecap="round"/>
+</svg>

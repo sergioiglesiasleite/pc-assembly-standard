@@ -1,25 +1,33 @@
 {
-  "name": "field-ops-guide",
+  "name": "pc-assembly-field-guide",
   "type": "module",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "check": "astro check",
+    "test": "node --experimental-strip-types --test tests/content.test.mjs tests/checklistStorage.test.mjs",
+    "test:e2e": "playwright test",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/react": "^3.0.9",
-    "@astrojs/tailwind": "^5.1.0",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
-    "astro": "^4.1.0",
+    "@astrojs/react": "^6.0.6",
+    "astro": "^7.3.3",
     "lucide-react": "^0.307.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.4.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.2",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   }
 }

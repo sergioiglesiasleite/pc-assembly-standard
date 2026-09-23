@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img">
+  <rect width="1024" height="1024" rx="48" fill="#f0f7f4"/>
+  <rect x="124" y="195" width="776" height="630" rx="28" fill="#183b36"/>
+  <rect x="124" y="195" width="776" height="96" rx="28" fill="#087d59"/>
+  <g fill="#d7e8df"><rect x="175" y="350" width="674" height="120" rx="18"/><rect x="175" y="520" width="674" height="120" rx="18"/></g>
+  <rect x="195" y="365" width="250" height="90" rx="12" fill="#b5c7bf"/>
+  <rect x="195" y="535" width="250" height="90" rx="12" fill="#b5c7bf"/>
+  <rect x="665" y="378" width="154" height="66" rx="33" fill="#819d8f"/>
+  <circle cx="699" cy="411" r="53" fill="#ffffff"/>
+  <rect x="665" y="548" width="154" height="66" rx="33" fill="#087d59"/>
+  <circle cx="785" cy="581" r="53" fill="#ffffff"/>
+  <g fill="#183b36" font-family="system-ui,sans-serif" font-size="40" font-weight="700"><text x="220" y="424">JEDEC</text><text x="220" y="594">XMP / EXPO</text></g>
+</svg>
