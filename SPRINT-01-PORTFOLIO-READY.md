@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Estado | Release `v1.0.0` publicada y verificada el 2026-09-23; actualización del CV externo pendiente |
+| Estado | Release `v1.0.0` publicada; cierre integral pendiente de CV real y prueba manual con lector de pantalla |
 | Responsable | Sergio |
 | Duración recomendada | 3 semanas |
 | Fechas | Por definir |
@@ -23,12 +23,12 @@
 | FPG-05 | Completado | 2026-09-22 | Presentación de portfolio, contexto independiente, imagen original y enlace al repositorio |
 | FPG-06 | Completado | 2026-09-22 | Navegación compacta validada en 320, 390, 768, 1024 y 1440 px |
 | FPG-07 | Completado | 2026-09-22 | IDs estables, persistencia multilingüe versionada y reset con confirmación |
-| FPG-08 | Completado | 2026-09-22 | Teclado y axe verificados; Lighthouse Accessibility local 100 |
+| FPG-08 | Completado con escucha pendiente | 2026-09-23 | Objetivo táctil móvil corregido; teclado, axe y Lighthouse Accessibility 100. Falta prueba real con lector de pantalla |
 | FPG-09 | Completado | 2026-09-22 | Diagramas engañosos reemplazados; imágenes de la guía reducidas de 5,64 MB a unos 550 KB |
 | FPG-10 | Completado con limitación | 2026-09-22 | Paridad automatizada; revisión nativa del alemán pendiente y declarada en README |
 | FPG-11 | Completado | 2026-09-22 | Canonical, hreflang, metadatos sociales, sitemap, robots y favicon |
-| FPG-12 | Completado | 2026-09-23 | 6 tests unitarios, 6 E2E y GitHub Actions verde en `7dcfe0f` |
-| FPG-13 | Completado con seguimiento externo | 2026-09-23 | Vercel, CI y Lighthouse verificados; etiqueta `v1.0.0` publicada. Falta que Sergio añada el enlace a su CV |
+| FPG-12 | Completado | 2026-09-23 | 6 tests unitarios, 7 E2E y GitHub Actions verde en `5b52bcf` |
+| FPG-13 | Parcial: publicación completada | 2026-09-23 | Vercel, CI y Lighthouse verificados; entrada CV preparada en `docs/CV-ENTRY.md`, pero faltan CV real y escucha con Narrador/NVDA |
 
 ## 1. Contexto
 
@@ -569,6 +569,7 @@ Como candidato, quiero compartir una URL estable y profesional que funcione igua
 - [x] Lighthouse alcanza los objetivos acordados en la medición móvil de producción.
 - [ ] El README utiliza la URL definitiva; el CV externo debe actualizarlo Sergio.
 - [x] La release publicada corresponde al commit `7dcfe0f`.
+- [ ] Prueba de escucha básica con Narrador o NVDA realizada y documentada; ver `docs/ACCESSIBILITY-AUDIT.md`.
 
 ---
 
@@ -603,7 +604,7 @@ No debe contener:
 
 ## 11. Definition of Done global
 
-- [x] Todos los P0 del sitio están terminados; la inclusión del enlace en el CV externo es una acción del propietario.
+- [ ] Los P0 técnicos del sitio están terminados; falta actualizar el CV real y escuchar el flujo con Narrador/NVDA.
 - [x] `npm ci` funciona desde una instalación limpia en CI.
 - [x] `npm run check` termina sin errores.
 - [x] Tests unitarios y E2E pasan.
@@ -616,7 +617,7 @@ No debe contener:
 - [x] Navegación móvil validada desde 320 px.
 - [x] Flujo principal operable solo con teclado en los controles verificados.
 - [x] Sin problemas críticos/serios en axe.
-- [x] Lighthouse móvil en producción: Performance 99, Accessibility 100, Best Practices 100 y SEO 100.
+- [x] Lighthouse móvil en producción tras el último ajuste: Performance 97, Accessibility 100, Best Practices 100 y SEO 100.
 - [x] Imágenes optimizadas, con dimensiones, alt y procedencia documentada.
 - [x] Contenido técnico revisado y fechado.
 - [x] README actualizado con demo y capturas reales.

@@ -27,3 +27,7 @@ The production domain returned HTTP 200 for `/`, `/en/`, `/es/`, `/de/`, `robots
 Lighthouse 13.5.0, mobile profile, production `/es/`: **Performance 99, Accessibility 100, Best Practices 100, SEO 100**. The generated report recorded 1.8 s LCP, 0 CLS and about 293 KiB of page weight. As on the local run, Lighthouse returned `EPERM` during Windows temporary-profile cleanup *after* writing the valid report; the JSON is retained locally as `docs/lighthouse-production.json` and intentionally excluded from Git. Metrics are a point-in-time observation, not a guarantee.
 
 No manual screen-reader or native German-language review was performed. The latter is disclosed in the README and remains a follow-up.
+
+## Accessibility follow-up — 2026-09-23
+
+Commit [`5b52bcf`](https://github.com/sergioiglesiasleite/pc-assembly-standard/commit/5b52bcf24ae9f77e7a1111e251c862a24f37dd7b) raised the mobile brand touch target to 44 px, added its localized accessible name, corrected the body text color variable and added a 320 px keyboard/selector regression test. The seven E2E tests, CI and Vercel deployment passed. A fresh production Lighthouse mobile run returned **97 Performance, 100 Accessibility, 100 Best Practices and 100 SEO**. Its valid JSON report is stored locally as `docs/lighthouse-production-after-a11y.json` and ignored by Git; the CLI again returned `EPERM` only during temporary-profile cleanup. See [`ACCESSIBILITY-AUDIT.md`](ACCESSIBILITY-AUDIT.md) for findings and the outstanding real screen-reader listening checklist.

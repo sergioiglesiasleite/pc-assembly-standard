@@ -8,7 +8,7 @@
 
 ## Summary
 
-No critical or serious violations were reported by axe in the three languages. The browser E2E suite passes seven tests, including keyboard navigation, checklist interaction and the 320 px layout. Lighthouse Accessibility on the previous production release scored 100; it should be repeated after this fix is deployed.
+No critical or serious violations were reported by axe in the three languages. The browser E2E suite passes seven tests, including keyboard navigation, checklist interaction and the 320 px layout. After deploying commit `5b52bcf`, production Lighthouse scored 97 Performance, 100 Accessibility, 100 Best Practices and 100 SEO. CI and Vercel both reported success for that commit.
 
 One minor issue was found and fixed: the mobile brand link's visible hit area was only 28 px high. It now has a minimum height of 44 px and its accessible name is the localized full site title. A missing CSS body-color variable was also corrected to the declared dark brand color.
 
