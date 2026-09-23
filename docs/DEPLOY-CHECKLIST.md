@@ -13,19 +13,19 @@ This is a static Astro site on Vercel. There is no database, feature flag, API, 
 - [x] Run `npm run test`, `npm run build` and `npm run test:e2e`.
 - [x] Document the deliberately reset old checklist progress and pending native German review.
 - [x] Review the presentation, images, technical sources and independent-project disclaimer.
-- [ ] Confirm the final commit and CI status on GitHub.
+- [x] Confirm release commit `7dcfe0f` and green CI on GitHub.
 
 ## Publish and smoke test
 
-- [ ] Push the release commit to the repository.
-- [ ] Verify the Vercel production deployment uses that commit.
-- [ ] Open `/`, `/en/`, `/es/` and `/de/` directly over HTTPS, on desktop and mobile.
-- [ ] Check language switching, navigation anchors and checklist persistence/reset.
-- [ ] Check image assets, `favicon.svg`, `robots.txt` and `sitemap.xml` return successfully.
-- [ ] Inspect console and network for script errors and 404/5xx responses.
-- [ ] Verify canonical, `hreflang` and Open Graph metadata on production.
-- [ ] Run a production Lighthouse mobile audit and compare with the local baseline in `docs/QA.md`.
-- [ ] Confirm GitHub Actions is green.
+- [x] Push the release commit to the repository.
+- [x] Verify the Vercel production deployment uses that commit; the commit status reports success.
+- [x] Open `/`, `/en/`, `/es/` and `/de/` directly over HTTPS and check mobile rendering.
+- [x] Check language switching and checklist persistence; anchors and reset are covered by E2E against the production build.
+- [x] Check image assets, `favicon.svg`, `robots.txt` and `sitemap.xml` return successfully.
+- [x] Inspect console and network for script errors and 404/5xx responses.
+- [x] Verify canonical, `hreflang` and Open Graph metadata on production.
+- [x] Run a production Lighthouse mobile audit and compare with the local baseline in `docs/QA.md`.
+- [x] Confirm GitHub Actions is green.
 
 ## Rollback triggers and recovery
 
@@ -33,6 +33,6 @@ Return to the previous Vercel deployment or revert the release commit if any lan
 
 ## After publishing
 
-- [ ] Update the sprint status and QA notes with production findings.
-- [ ] Add the release tag only after smoke tests and CI pass.
-- [ ] Share the final demo URL for CV use, noting that native German editing remains pending.
+- [x] Update the sprint status and QA notes with production findings.
+- [x] Publish tag `v1.0.0` after smoke tests and CI passed.
+- [x] Share the final demo URL for CV use, noting that native German editing remains pending. The owner still needs to update the external CV.

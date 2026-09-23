@@ -1,12 +1,14 @@
 # Sprint 01 — Portfolio Ready: PC Assembly Field Guide
 
-**Estado:** Reanudado el 2026-09-23; despliegue pendiente  
-**Responsable:** Sergio  
-**Duración recomendada:** 3 semanas  
-**Fechas:** Por definir  
-**Capacidad asumida:** 60 horas  
-**Trabajo planificado:** 48 horas (80 %)  
-**Margen:** 12 horas (20 %)  
+| Campo | Valor |
+|---|---|
+| Estado | Release `v1.0.0` publicada y verificada el 2026-09-23; actualización del CV externo pendiente |
+| Responsable | Sergio |
+| Duración recomendada | 3 semanas |
+| Fechas | Por definir |
+| Capacidad asumida | 60 horas |
+| Trabajo planificado | 48 horas (80 %) |
+| Margen | 12 horas (20 %) |
 
 > Si el trabajo se realiza únicamente por las tardes o fines de semana, mantener el alcance y ampliar la duración a 4–6 semanas.
 
@@ -25,8 +27,8 @@
 | FPG-09 | Completado | 2026-09-22 | Diagramas engañosos reemplazados; imágenes de la guía reducidas de 5,64 MB a unos 550 KB |
 | FPG-10 | Completado con limitación | 2026-09-22 | Paridad automatizada; revisión nativa del alemán pendiente y declarada en README |
 | FPG-11 | Completado | 2026-09-22 | Canonical, hreflang, metadatos sociales, sitemap, robots y favicon |
-| FPG-12 | Implementado; CI remoto pendiente | 2026-09-22 | Tests locales verdes; workflow preparado para el próximo push |
-| FPG-13 | En curso | 2026-09-22 | Build y QA local verdes; falta desplegar y comprobar Vercel |
+| FPG-12 | Completado | 2026-09-23 | 6 tests unitarios, 6 E2E y GitHub Actions verde en `7dcfe0f` |
+| FPG-13 | Completado con seguimiento externo | 2026-09-23 | Vercel, CI y Lighthouse verificados; etiqueta `v1.0.0` publicada. Falta que Sergio añada el enlace a su CV |
 
 ## 1. Contexto
 
@@ -533,7 +535,7 @@ Como mantenedor, quiero detectar regresiones antes de publicar para que una modi
 
 **Criterios de aceptación**
 
-- [ ] El pipeline está configurado para cada push y pull request; ejecución remota pendiente del primer push.
+- [x] El pipeline se ejecuta en push y pull request; primera ejecución remota verde.
 - [x] Un idioma incompleto hace fallar el pipeline.
 - [x] Las rutas y checklists principales tienen cobertura E2E.
 - [x] El build de producción es obligatorio para aprobar CI.
@@ -561,12 +563,12 @@ Como candidato, quiero compartir una URL estable y profesional que funcione igua
 
 **Criterios de aceptación**
 
-- [ ] Existe una URL pública estable con HTTPS.
-- [ ] Las rutas profundas `/en`, `/es` y `/de` funcionan al abrirlas directamente.
-- [ ] No hay errores en consola ni recursos ausentes.
-- [ ] Lighthouse alcanza los objetivos acordados.
-- [ ] README y CV utilizan la URL definitiva.
-- [ ] La release publicada corresponde a un commit identificable.
+- [x] Existe una URL pública estable con HTTPS.
+- [x] Las rutas profundas `/en`, `/es` y `/de` funcionan al abrirlas directamente.
+- [x] No hay errores en consola ni recursos ausentes en el smoke test de producción.
+- [x] Lighthouse alcanza los objetivos acordados en la medición móvil de producción.
+- [ ] El README utiliza la URL definitiva; el CV externo debe actualizarlo Sergio.
+- [x] La release publicada corresponde al commit `7dcfe0f`.
 
 ---
 
@@ -601,27 +603,27 @@ No debe contener:
 
 ## 11. Definition of Done global
 
-- [ ] Todos los P0 están terminados.
-- [ ] `npm ci` funciona desde un clon limpio.
-- [ ] `npm run check` termina sin errores.
-- [ ] Tests unitarios y E2E pasan.
-- [ ] Build de producción correcto.
-- [ ] CI verde.
-- [ ] Sin errores ni warnings relevantes en consola.
-- [ ] EN, ES y DE tienen paridad estructural.
-- [ ] No se muestran marcadores Markdown literales.
-- [ ] No se renderiza HTML sin sanitizar desde traducciones.
-- [ ] Navegación móvil validada desde 320 px.
-- [ ] Flujo principal operable solo con teclado.
-- [ ] Sin problemas críticos/serios en axe.
-- [ ] Lighthouse móvil: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95 y SEO ≥ 95.
-- [ ] Imágenes optimizadas, con dimensiones, alt y licencia/procedencia.
-- [ ] Contenido técnico revisado y fechado.
-- [ ] README actualizado con demo y capturas reales.
-- [ ] URL pública HTTPS disponible.
-- [ ] Disclaimer de proyecto independiente visible.
-- [ ] Revisión final del texto realizada en los tres idiomas o limitación documentada.
-- [ ] Tag/release `v1.0.0` creado.
+- [x] Todos los P0 del sitio están terminados; la inclusión del enlace en el CV externo es una acción del propietario.
+- [x] `npm ci` funciona desde una instalación limpia en CI.
+- [x] `npm run check` termina sin errores.
+- [x] Tests unitarios y E2E pasan.
+- [x] Build de producción correcto.
+- [x] CI verde.
+- [x] Sin errores ni warnings relevantes en consola.
+- [x] EN, ES y DE tienen paridad estructural.
+- [x] No se muestran marcadores Markdown literales.
+- [x] No se renderiza HTML sin sanitizar desde traducciones.
+- [x] Navegación móvil validada desde 320 px.
+- [x] Flujo principal operable solo con teclado en los controles verificados.
+- [x] Sin problemas críticos/serios en axe.
+- [x] Lighthouse móvil en producción: Performance 99, Accessibility 100, Best Practices 100 y SEO 100.
+- [x] Imágenes optimizadas, con dimensiones, alt y procedencia documentada.
+- [x] Contenido técnico revisado y fechado.
+- [x] README actualizado con demo y capturas reales.
+- [x] URL pública HTTPS disponible.
+- [x] Disclaimer de proyecto independiente visible.
+- [x] Revisión del texto realizada; revisión nativa del alemán pendiente y documentada.
+- [x] Tag `v1.0.0` creado y publicado.
 
 ## 12. Plan de ejecución recomendado
 
@@ -693,16 +695,16 @@ Evitar un único commit que mezcle contenido, dependencias, diseño y tests.
 
 Estas decisiones no bloquean el inicio del sprint, pero deben resolverse antes de FPG-13:
 
-- [ ] Nombre público definitivo del proyecto.
-- [ ] Nombre del repositorio.
-- [ ] URL de GitHub.
-- [ ] Hosting elegido.
+- [x] Nombre público usado: PC Assembly Field Guide.
+- [x] Nombre del repositorio conservado: `pc-assembly-standard`.
+- [x] URL de GitHub proporcionada y enlazada.
+- [x] Hosting elegido: Vercel.
 - [ ] Dominio propio, si existe.
 - [ ] Nombre que aparecerá como autor.
 - [ ] Enlaces a portfolio, GitHub o LinkedIn.
 - [ ] Licencia del código; MIT es una opción razonable para portfolio.
-- [ ] Procedencia y licencia de las imágenes actuales.
-- [ ] Si se menciona explícitamente la experiencia en Mindfactory o se utiliza una formulación genérica como “high-volume PC assembly environment”.
+- [x] Procedencia de las imágenes documentada; se usan recursos originales del proyecto, generados por IA o SVG propios.
+- [x] Se usa una formulación genérica de experiencia práctica, sin atribuir el proyecto a Mindfactory.
 - [ ] Persona disponible para revisar el alemán.
 
 ## 16. Métricas de éxito
