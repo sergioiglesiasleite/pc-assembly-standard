@@ -45,6 +45,28 @@ test('main controls remain operable from the keyboard', async ({ page }) => {
   await expect(firstCheckbox).toBeChecked();
 });
 
+test('mobile branding and language control remain accessible at 320px', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  for (const lang of ['en', 'es', 'de']) {
+    await page.goto(`/${lang}/`);
+    const brand = page.locator('[data-mobile-header] > div > a');
+    const title = await page.getByRole('heading', { level: 1 }).innerText();
+    await expect(brand).toHaveAttribute('aria-label', title);
+    expect((await brand.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+
+    const selector = page.locator('[data-mobile-header] [data-language-selector]');
+    const summary = selector.locator('summary');
+    await summary.focus();
+    await page.keyboard.press('Enter');
+    await expect(selector).toHaveAttribute('open');
+    await expect(selector.locator(`a[lang="${lang}"]`)).toHaveAttribute('aria-current', 'page');
+    await page.keyboard.press('Escape');
+    await expect(selector).not.toHaveAttribute('open');
+    await expect(summary).toBeFocused();
+  }
+});
+
 test('each language has production metadata and loads without console or asset errors', async ({ page }) => {
   const errors: string[] = [];
   page.on('console', (message) => {

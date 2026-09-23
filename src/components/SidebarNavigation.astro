@@ -32,7 +32,7 @@ const items = [
 
 <header data-mobile-header class="sticky top-0 z-40 border-b border-gray-200 bg-white px-4 py-3 lg:hidden">
   <div class="flex items-center justify-between gap-3">
-    <a href={`/${currentLang}`} class="text-lg font-bold text-brand-primary">
+    <a href={`/${currentLang}/`} aria-label={siteName} class="inline-flex min-h-11 items-center text-lg font-bold text-brand-primary">
       PC Guide
     </a>
 
@@ -73,7 +73,7 @@ const items = [
 <aside data-desktop-navigation class="hidden w-80 shrink-0 border-r border-gray-200 bg-white lg:sticky lg:top-0 lg:block lg:h-screen lg:overflow-y-auto">
   <nav aria-label={navigationLabel} class="p-6">
     <div class="mb-8">
-      <a href={`/${currentLang}`} class="text-2xl font-bold text-brand-primary">
+      <a href={`/${currentLang}/`} class="text-2xl font-bold text-brand-primary">
         {siteName}
       </a>
       <p class="mt-1 text-sm text-gray-600">{tagline}</p>
