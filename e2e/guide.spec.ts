@@ -82,7 +82,7 @@ test('each language has production metadata and loads without console or asset e
   for (const lang of ['en', 'es', 'de']) {
     await page.goto(`/${lang}/`);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://pc-assembly-standard.vercel.app/${lang}/`);
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://pc-assembly-standard.vercel.app/images/social-preview.webp');
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'https://pc-assembly-standard.vercel.app/images/social-preview.jpg');
     await expect(page.locator(`link[hreflang="${lang}"]`)).toHaveAttribute('href', `https://pc-assembly-standard.vercel.app/${lang}/`);
   }
   expect(errors).toEqual([]);
