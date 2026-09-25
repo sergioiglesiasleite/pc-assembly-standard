@@ -8,7 +8,7 @@ interface Props {
 
 const { title, description, lang, skipLink } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const socialImage = new URL('/images/social-preview.webp', Astro.site).href;
+const socialImage = new URL('/images/social-preview.jpg', Astro.site).href;
 const locales = { en: 'en_US', es: 'es_ES', de: 'de_DE' } as const;
 ---
 
